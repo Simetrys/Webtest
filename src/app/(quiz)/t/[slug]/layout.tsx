@@ -23,7 +23,6 @@ export default function TestLayout({
 
   return (
     <div>
-      {/* 필요하면 공통 헤더/푸터 */}
       {children}
     </div>
   );

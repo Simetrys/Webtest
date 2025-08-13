@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./globals.css";
 
 export const metadata = {
@@ -14,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           position: "sticky", top: 0, zIndex: 10, background: "#fff",
           borderBottom: "1px solid #eee", padding: "10px 12px"
         }}>
-          <a href="/" style={{ fontWeight: 900, letterSpacing: -0.3 }}>My Mobile Tests</a>
+          <Link href="/" style={{ fontWeight: 900, letterSpacing: -0.3 }}>My Mobile Tests</Link>
         </header>
         {children}
         <footer style={{ padding: 16, fontSize: 12, opacity: 0.6, textAlign: "center" }}>
