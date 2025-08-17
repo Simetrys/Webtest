@@ -12,10 +12,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko">
       <body style={{ background: "#f7f7f8" }}>
         <header style={{
-          position: "sticky", top: 0, zIndex: 10, background: "#fff",
-          borderBottom: "1px solid #eee", padding: "10px 12px"
-        }}>
-          <Link href="/" style={{ fontWeight: 900, letterSpacing: -0.3 }}>My Mobile Tests</Link>
+    position: "sticky",
+    top: 0,
+    zIndex: 10,
+    background: "#fff",
+    borderBottom: "1px solid #eee",
+    padding: "10px 12px",
+    display: "flex",
+    justifyContent: "center", // 가운데 정렬
+  }}
+>
+          <Link href="/" style={{ fontWeight: 900, letterSpacing: -0.3 }}>POOOMANG</Link>
         </header>
         {children}
         <footer style={{ padding: 16, fontSize: 12, opacity: 0.6, textAlign: "center" }}>
