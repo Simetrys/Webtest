@@ -1,29 +1,24 @@
-// src/app/(quiz)/t/[slug]/layout.tsx
 import { ReactNode } from "react";
 import { getTest } from "../../../../domain/tests";
 import { notFound } from "next/navigation";
 
-// ✅ named export (OK)
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const test = getTest(params.slug);
-  if (!test) return {};
-  return { title: test.title };
+export async function generateMetadata(
+  props: { params: Promise<{ slug: string }> }    // ★ Promise 타입
+) {
+  const { slug } = await props.params;            // ★ await
+  const test = getTest(slug);
+  return test ? { title: test.title } : {};
 }
 
-// ✅ default export (단 1회만!)
-export default function TestLayout({
+export default async function TestLayout({
   children,
-  params,
+  params,                                         // Next가 Promise를 넣어줌
 }: {
   children: ReactNode;
-  params: { slug: string };
+  params: Promise<{ slug: string }>;              // ★ Promise 타입
 }) {
-  const test = getTest(params.slug);
+  const { slug } = await params;                  // ★ await
+  const test = getTest(slug);
   if (!test) notFound();
-
-  return (
-    <div>
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }

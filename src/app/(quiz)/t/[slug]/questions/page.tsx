@@ -1,10 +1,14 @@
+// src/app/(quiz)/t/[slug]/questions/page.tsx
 import { getTest } from "../../../../../domain/tests";
 import { notFound } from "next/navigation";
-// 상대경로 사용 (별칭 설정 안 되어도 안전)
-import QuestionStepper from "../../../../../components/quiz/QuestionStepper";
+import QuestionStepper2 from "../../../../../components/quiz/QuestionStepper2"; // ↔ 별칭 없을 때
 
-export default function QuestionsPage({ params }: { params: { slug: string } }) {
-  const test = getTest(params.slug);
+export default async function QuestionsPage(
+  props: { params: Promise<{ slug: string }> }   // ← 이 프로젝트는 Promise params
+) {
+  const { slug } = await props.params;
+  const test = getTest(slug);
   if (!test) notFound();
-  return <QuestionStepper slug={test.slug} questions={test.questions} />;
+
+  return <QuestionStepper2 slug={test.slug} questions={test.questions} />;
 }
